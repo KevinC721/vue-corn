@@ -11,9 +11,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@antv/x6": "^1.29.6",
     "element-ui": "^2.4.0",
     "vue": "^2.5.2",
-    "vue-router": "^3.5.3"
+    "vue-router": "^3.5.3",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

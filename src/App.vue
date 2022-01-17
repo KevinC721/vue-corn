@@ -8,6 +8,9 @@
         <router-link to="/tree">
           <el-button type="success">Tree</el-button>
         </router-link>
+        <router-link to="/treeantx">
+          <el-button type="success">treeAntx</el-button>
+        </router-link>
       </el-row>
     </div>
     <div class="viewer">

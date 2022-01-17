@@ -13,6 +13,11 @@ const routes = [
     path: '/tree',
     name: 'tree',
     component: Tree
+  },
+  {
+    path: '/treeantx',
+    name: 'treeantx',
+    component: () => import(/* webpackChunkName: "group-foo" */ '../views/treeAntx.vue')
   }
 ]
 
