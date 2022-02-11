@@ -27,6 +27,7 @@
 
 <script>
 import { Graph } from '@antv/x6'
+import { findObj } from '../utils/findData'
 
 export default {
   components: {},
@@ -121,8 +122,8 @@ export default {
           },
           {
             id: 'node2', // String，节点的唯一标识
-            shape: 'ellipse',
-            x: 180, // Number，必选，节点位置的 x 值
+            shape: 'rect',
+            x: 200, // Number，必选，节点位置的 x 值
             y: 10, // Number，必选，节点位置的 y 值
             width: 80, // Number，可选，节点大小的 width 值
             height: 40, // Number，可选，节点大小的 height 值
@@ -135,8 +136,8 @@ export default {
           },
           {
             id: 'node3', // String，节点的唯一标识
-            shape: 'ellipse',
-            x: 180, // Number，必选，节点位置的 x 值
+            shape: 'rect',
+            x: 200, // Number，必选，节点位置的 x 值
             y: 70, // Number，必选，节点位置的 y 值
             width: 80, // Number，可选，节点大小的 width 值
             height: 40, // Number，可选，节点大小的 height 值
@@ -154,20 +155,13 @@ export default {
             source: 'node1', // String，必须，起始节点 id
             target: 'node2', // String，必须，目标节点 id
             router: 'er',
-            connector: {
-              name: 'rounded'
-            },
             attrs: {
               body: {
                 strokeDasharray: '10.2'
               },
               line: {
                 sourceMarker: 'path', // 实心箭头
-                targetMarker: {
-                  name: 'path', // 椭圆
-                  rx: 10, // 椭圆箭头的 x 半径
-                  ry: 6 // 椭圆箭头的 y 半径
-                },
+                targetMarker: 'path', // 椭圆
                 strokeDasharray: '10.2'
               }
             }
@@ -176,32 +170,152 @@ export default {
             source: 'node1', // String，必须，起始节点 id
             target: 'node3', // String，必须，目标节点 id
             router: 'er',
-            connector: {
-              name: 'rounded'
-            },
             attrs: {
               body: {
                 strokeDasharray: '10.2'
               },
               line: {
                 sourceMarker: 'path', // 实心箭头
-                targetMarker: {
-                  name: 'path', // 椭圆
-                  rx: 10, // 椭圆箭头的 x 半径
-                  ry: 6 // 椭圆箭头的 y 半径
-                },
+                targetMarker: 'path', // 椭圆,
                 strokeDasharray: '10.2'
               }
             }
           }
         ]
-      }
+      },
+      guidWrap: {
+        id: 'guid',
+        shape: 'ellipse',
+        x: 0, // Number，必选，节点位置的 x 值
+        y: 0, // Number，必选，节点位置的 y 值
+        width: 80, // Number，可选，节点大小的 width 值
+        height: 40, // Number，可选，节点大小的 height 值
+        label: '可放', // String，节点标签
+        attrs: {
+          body: {
+            strokeDasharray: '10.2'
+          }
+        }
+      },
+      guidEdge: {
+        source: '', // String，必须，起始节点 id
+        target: '', // String，必须，目标节点 id
+        router: 'er',
+        connector: {
+          name: 'rounded'
+        },
+        attrs: {
+          body: {
+            strokeDasharray: '10.2'
+          },
+          line: {
+            sourceMarker: 'path', // 实心箭头
+            targetMarker: {
+              name: 'path', // 椭圆
+              rx: 10, // 椭圆箭头的 x 半径
+              ry: 6 // 椭圆箭头的 y 半径
+            },
+            strokeDasharray: '10.2'
+          }
+        }
+      },
+      currGuidNum: 0,
+      // positionInfo: [RT, RB],
+      arrTest: [
+        {
+          id: 'node1', // String，可选，节点的唯一标识
+          shape: 'rect',
+          x: 40, // Number，必选，节点位置的 x 值
+          y: 40, // Number，必选，节点位置的 y 值
+          width: 80, // Number，可选，节点大小的 width 值
+          height: 40, // Number，可选，节点大小的 height 值
+          label: 'hello', // String，节点标签
+          attrs: {
+            body: {
+              fill: '#2ECC71',
+              stroke: '#000'
+            },
+            label: {
+              text: 'Hello',
+              fill: '#333',
+              fontSize: 13
+            }
+          }
+        },
+        {
+          id: 'node2', // String，节点的唯一标识
+          shape: 'ellipse',
+          x: 180, // Number，必选，节点位置的 x 值
+          y: 10, // Number，必选，节点位置的 y 值
+          width: 80, // Number，可选，节点大小的 width 值
+          height: 40, // Number，可选，节点大小的 height 值
+          label: 'world', // String，节点标签
+          attrs: {
+            body: {
+              strokeDasharray: '10.2'
+            }
+          }
+        },
+        {
+          id: 'node3', // String，节点的唯一标识
+          shape: 'ellipse',
+          x: 180, // Number，必选，节点位置的 x 值
+          y: 70, // Number，必选，节点位置的 y 值
+          width: 80, // Number，可选，节点大小的 width 值
+          height: 40, // Number，可选，节点大小的 height 值
+          label: 'world', // String，节点标签
+          attrs: {
+            body: {
+              strokeDasharray: '10.2'
+            }
+          }
+        },
+        {
+          id: 'node2', // String，节点的唯一标识
+          shape: 'ellipse',
+          x: 180, // Number，必选，节点位置的 x 值
+          y: 10, // Number，必选，节点位置的 y 值
+          width: 80, // Number，可选，节点大小的 width 值
+          height: 40, // Number，可选，节点大小的 height 值
+          label: 'world', // String，节点标签
+          attrs: {
+            body: {
+              strokeDasharray: '10.2'
+            }
+          }
+        },
+        {
+          id: 'node4', // String，节点的唯一标识
+          shape: 'ellipse',
+          x: 180, // Number，必选，节点位置的 x 值
+          y: 70, // Number，必选，节点位置的 y 值
+          width: 80, // Number，可选，节点大小的 width 值
+          height: 40, // Number，可选，节点大小的 height 值
+          label: 'world', // String，节点标签
+          attrs: {
+            body: {
+              strokeDasharray: '10.2'
+            }
+          }
+        }
+      ]
     }
   },
   methods: {
     handleDragStart (node, ev) {
       console.log('drag start', node.label)
       this.currDragNode = node.label
+      // 开始拖拽树节点时，在右侧画布上展示可放置的位置引导框
+      const currGuidWrap = this.guidWrap
+      // 获取当前画布中节点数组的长度
+      const graphNodeLen = this.graphInfo.nodes.length
+      // 计算当前引导框的位置
+      currGuidWrap.x = this.graphInfo.nodes[graphNodeLen - 1].x + 140
+      currGuidWrap.y = this.graphInfo.nodes[graphNodeLen - 1].y + 60
+      // 将创建好的引导框节点放入节点数组中
+      this.graphInfo.nodes.push(currGuidWrap)
+      // 重新绘制画布
+      this.graph.fromJSON(this.graphInfo)
     },
     handleDragEnter (draggingNode, dropNode, ev) {
       // console.log('tree drag enter: ', dropNode.label)
@@ -216,10 +330,10 @@ export default {
       console.log('tree drag end: ', dropNode && dropNode.label, dropType)
       const currNodeLen = this.graphInfo.nodes.length
       let obj = {
-        id: 'node' + (currNodeLen + 1),
+        id: 'node' + (currNodeLen),
         shape: 'ellipse',
-        x: this.graphInfo.nodes[0].x + 140, // Number，必选，节点位置的 x 值
-        y: this.graphInfo.nodes[currNodeLen - 1].y + 60, // Number，必选，节点位置的 y 值
+        x: this.graphInfo.nodes[currNodeLen - 2].x + 140, // Number，必选，节点位置的 x 值
+        y: this.graphInfo.nodes[currNodeLen - 2].y + 60, // Number，必选，节点位置的 y 值
         width: 80, // Number，可选，节点大小的 width 值
         height: 40, // Number，可选，节点大小的 height 值
         label: dropNode.label, // String，节点标签
@@ -229,11 +343,15 @@ export default {
           }
         }
       }
+      // 拖拽结束时，先删除引导框
+      this.graphInfo.nodes.pop()
+
+      // 将拖入的节点推入节点数组
       this.graphInfo.nodes.push(obj)
 
       const newedges = {
-        source: 'node1', // String，必须，起始节点 id
-        target: 'node4', // String，必须，目标节点 id
+        source: 'node' + (currNodeLen - 1), // String，必须，起始节点 id
+        target: 'node' + currNodeLen, // String，必须，目标节点 id
         router: 'er',
         connector: {
           name: 'rounded'
@@ -289,6 +407,7 @@ export default {
   },
   mounted () {
     this.initGraph()
+    findObj(this.arrTest, 'id', 'node2', true)
   }
 }
 </script>

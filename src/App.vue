@@ -5,11 +5,11 @@
         <router-link to="/">
           <el-button type="primary">Corn</el-button>
         </router-link>
-        <router-link to="/tree">
-          <el-button type="success">Tree</el-button>
-        </router-link>
         <router-link to="/treeantx">
           <el-button type="success">treeAntx</el-button>
+        </router-link>
+        <router-link to="/tablerelation">
+          <el-button type="success">cornRelation</el-button>
         </router-link>
       </el-row>
     </div>

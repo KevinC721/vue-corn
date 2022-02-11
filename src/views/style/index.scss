@@ -1,0 +1,315 @@
+.container_warp {
+  position: relative;
+  width: 100%;
+  // height: 100vh;
+  height: calc(100vh - 60px - 52px - 64px - 67px);
+  display: flex;
+  .operating {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    background-color: #ffffff;
+    padding: 20px 10px;
+    box-shadow: 1px 1px 4px 0 #0a0a0a2e;
+  }
+}
+.btn-group {
+  border-right: 1px solid #efefef;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 14px;
+  position: relative;
+  &:last-of-type {
+    border-right: 0;
+  }
+  .btn {
+    display: inline-block;
+    margin: 2px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s;
+    border-radius: 6px;
+    border: 1px solid rgba(233, 233, 233, 0);
+    i {
+      font-size: 20px;
+    }
+  }
+  .currentArrow {
+    background: #2d8cf0;
+    color: #fff;
+  }
+}
+.rotate-square {
+  display: inline-block;
+  transform: rotate(45deg);
+}
+.my-snapline {
+  color: #000;
+}
+.right_drawer {
+  height: 100%;
+  width: 300px;
+  border-left: 1px solid #eee;
+  background: #fff;
+}
+// 链接桩初始样式
+.x6-port-body {
+  visibility: hidden;
+}
+// 连线删除按钮
+.x6-graph-svg-decorator {
+  visibility: hidden;
+}
+
+//右键菜单遮罩样式
+#mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 99999;
+}
+//右键菜单样式
+#contextMenu {
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  ul {
+    width: 100%;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    padding: 4px 0;
+    background-color: #fff;
+    outline: 0;
+    min-width: 160px;
+    min-height: 32px;
+    .iconfont {
+      padding-right: 10px;
+    }
+    li {
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      list-style: none;
+      height: 28px;
+      line-height: 28px;
+      font-size: 12px;
+      padding: 0 10px;
+      &:hover {
+        color: #262626;
+        background: #f5f5f5;
+      }
+    }
+  }
+}
+
+/deep/ .x6-node [magnet='true'][port-group='in_left'] {
+  cursor: move;
+}
+/deep/ .x6-node [magnet='true'][port-group='in_right'] {
+  cursor: move;
+}
+// 节点样式
+/deep/ .foreignObject {
+  width: 194px;
+  height: 32px;
+  .node_body {
+    position: static;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background-color: transparent;
+    .node_item {
+      width: 100%;
+      height: 100%;
+      .nodeElement {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        width: 194px;
+        height: 32px;
+        overflow: hidden;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+        &:hover {
+          background-color: rgba(243, 249, 255, 0.92);
+          border: 1px solid #1890ff;
+          box-shadow: 0 0 3px 3px rgba(64, 169, 255, 0.2);
+          .node_icon {
+            border-right: 1px solid #1890ff;
+          }
+        }
+        .node_icon {
+          display: inline-flex;
+          flex-grow: 0;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          background-color: #dfefff;
+          border-radius: 4px 0 0 4px;
+          .icon_style {
+            font-size: 20px;
+            color: #0080ff;
+          }
+        }
+        .notation {
+          display: inline-flex;
+          align-items: center;
+          width: calc(100% - 32px);
+          padding: 0 8px;
+          user-select: none;
+          .node_text {
+            overflow-x: hidden;
+            color: #242f57;
+            font-size: 14px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+          }
+        }
+      }
+      .begin_style {
+        // background-color: #fff;
+        background-image: linear-gradient(#76caff, #0a82ff);
+        box-shadow: none;
+        &:hover {
+          background-color: #fff;
+          border: 1px solid #6b67ee;
+          box-shadow: 0 1px 3px 3px rgba(64, 169, 255, 0.3);
+        }
+        .node_icon {
+          background-color: transparent;
+          .icon_style {
+            color: #fff;
+          }
+        }
+        .notation {
+          background-color: #fff;
+          width: calc(100% - 36px);
+          line-height: 26px;
+          border-radius: 2px;
+        }
+      }
+      // 节点禁用样式
+      .node_disable {
+        box-shadow: 4px 5px 13px 0px rgba(215, 215, 215, 0.53);
+        &:hover {
+          background-color: #fff;
+          border: none;
+          box-shadow: 4px 5px 13px 0px rgba(215, 215, 215, 0.53);
+          .node_icon {
+            border-right: none;
+          }
+        }
+        .node_icon {
+          .icon_style {
+            color: #8fc6fe;
+          }
+        }
+        .notation {
+          .node_text {
+            color: #b3bbd7;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 连接桩样式
+/deep/ .x6-port-body.available {
+  overflow: visible;
+  body {
+    overflow: visible;
+    .item {
+      &:before {
+        content: '';
+        float: left;
+        width: 20px;
+        height: 20px;
+        margin-top: -5px;
+        margin-left: -5px;
+        border-radius: 50%;
+        background-color: rgba(57, 202, 116, 0.6);
+        box-sizing: border-box;
+      }
+      &:after {
+        content: '';
+        float: left;
+        clear: both;
+        width: 10px;
+        height: 10px;
+        margin-top: -15px;
+        border-radius: 50%;
+        background-color: #fff;
+        border: 1px solid #39ca74;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+/deep/ .x6-port-body.adsorbed {
+  overflow: visible;
+  body {
+    overflow: visible;
+    .item {
+      &::before {
+        content: ' ';
+        float: left;
+        width: 28px;
+        height: 28px;
+        margin-top: -9px;
+        margin-left: -9px;
+        border-radius: 50%;
+        background-color: rgba(57, 202, 116, 0.6);
+        box-sizing: border-box;
+      }
+      &::after {
+        content: ' ';
+        float: left;
+        clear: both;
+        width: 10px;
+        height: 10px;
+        margin-top: -19px;
+        border-radius: 50%;
+        background-color: #fff;
+        border: 1px solid #39ca74;
+        position: relative;
+        z-index: 10;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+/deep/ .foreignObject_port {
+  width: 6px;
+  height: 6px;
+  .port_body {
+    width: 100%;
+    height: 100%;
+    .item {
+      width: 100%;
+      height: 100%;
+      .ais-port {
+        width: 100%;
+        height: 100%;
+        border: 1px solid grey;
+        border-radius: 50%;
+        background: #fff;
+        display: block;
+      }
+    }
+  }
+}
